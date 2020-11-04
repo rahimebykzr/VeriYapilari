@@ -1,0 +1,29 @@
+numbers = []  #Kullanıcıdan aldığımız sayıları tutmak için boş liste tanımladık 
+while True:   #Sayıları istemek için bir while döngüsü oluşturduk
+  number = input("Enter an integer number: ")  #Kullanıcıdan sayıları girmesini istiyoruz
+  if number == "":   #İstediği kadar sayı girdikten sonra döngüden çıkmak için bir boşluk bırakmalı
+    break  #Break komutuyla döngüden çıkar
+  numbers.append(int(number))  #Append fonksiyonuyla girilen sayılar numbers listesine aktarılacak
+print(numbers)  #Numbers listesini ekrana bastırır
+numbers.sort()  #Sort fonksiyonuyla sayılar sıralanır
+print(numbers)  #Numbers listesi sayıların sıralanmış şekliyle ekrana bastırılır
+
+number = int(input("Enter the number you are looking for between 1 and 100 : "))#Kullanıcıdan aranmasını istediği sayıyı girmesini istiyoruz 
+result = False  #Result adında bir değişken tanımladık ve buna False atadık
+start = 0  #Alt sınırı tutacak start adında bir değişken tanımladık ve buna  0 atadık
+end = len(numbers) - 1 #Üst sınırı tutacak end adında bir değişken tanımladık ve buna numbers listesinin uzunluğu - 1 atadık
+
+while start <= end:  #Alt sınır üst sınırdan küçük olduğu sürece devam edecek bir while döngüsü oluşturduk
+    middle = (start + end) // 2  #Ortadaki sayıyı bulmak için middle adında bir değişken tanımladık
+    if numbers[middle] == number: #Aranan sayı ortadaki sayıya eşitse
+        print("Found at index ",middle) #Sayı bulunduğu indisle birlikte ekrana yazdırılacak
+        result = True #Result değişkeni True olacak
+        break    #Break komutuyla döngüden çıkılacak
+    elif number > numbers[middle]: #Aranan sayı ortadaki sayıdan büyükse
+        start = middle + 1 #Sayıların küçük kısmıyla işimiz kalmadığı için alt sınırı ortadaki sayıdan bir fazla olarak değiştiriyoruz
+    else:  #Aranan sayı ortadaki sayıdan küçükse
+        end = middle - 1 #Sayıların büyük kısmıyla işimiz kalmadığı için üst sınırı ortadaki sayıdan bir eksik olacak şekilde değiştirdik
+#Aranan sayı bulunana kadar while döngüsü tekrarlanır 
+
+if result == False: #Eğer aranan sayı listede yoksa result değişkeni False olarak kalır 
+    print("This number was not found in this list.") #Sayı bu listede bulunamadı şeklinde ekrana çıktı verir
